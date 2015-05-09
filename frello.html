@@ -1,0 +1,48 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+	<title>Frello</title>
+
+	 <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+    
+</head>
+<body ng-app="frello">
+	<div class="container" ng-controller="FrelloController">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Frello</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+				    <label for="taskMessage">Task</label>
+				    <div class="input-group">
+				    	<span class="input-group-addon">todo:</span>
+				      	<input type="text" class="form-control" id="taskMessage" placeholder="Enter task" ng-model="task">
+				      	<span class="input-group-btn">
+				      		<button class = "btn btn-primary" ng-click="add(task)">Add</button>
+				      	</span>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-repeat="task in tasks track by $index" style="margin-top:5px;">
+            <div class="col-md-2">
+            	<input type="checkbox" ng-model="task.statusCompleted"/><label for="">Completed</label>
+            </div>
+            <div class="col-md-7" ng-class="{'text-success': task.statusCompleted}">
+            	<p>{{task.message}}</p>
+            </div>
+            <div class="col-md-3">
+            	<button class="btn btn-danger btn-block" ng-click="remove($index)">Odstrani</button>
+            </div>
+        </div>
+	</div>
+	
+
+	<script src="script.js"></script>
+</body>
+</html>
