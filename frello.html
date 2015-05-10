@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Frello</title>
-
+	<meta charset="UTF-8">
 	 <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
@@ -29,7 +29,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" ng-repeat="task in tasks track by $index" style="margin-top:5px;">
+		<div class="row">
+			<div class="col-md-6">
+				<button class="btn btn-success btn-block" ng-click="toggleCompleted()">{{showOnlyCompleted.text}}</button>
+			</div>
+			<div class="col-md-6">
+				<button class="btn btn-warning btn-block" ng-click="toggleUncompleted()">{{showOnlyUncompleted.text}}</button>
+			</div>
+		</div>
+		<div class="row" ng-repeat="task in tasks track by $index" style="margin-top:5px;" ng-hide="(showOnlyCompleted.show && !task.statusCompleted) || (showOnlyUncompleted.show && task.statusCompleted)">
             <div class="col-md-2">
             	<input type="checkbox" ng-model="task.statusCompleted"/><label for="">Completed</label>
             </div>
@@ -42,7 +50,6 @@
         </div>
 	</div>
 	
-
 	<script src="script.js"></script>
 </body>
 </html>
