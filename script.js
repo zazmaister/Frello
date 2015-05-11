@@ -1,4 +1,8 @@
-angular.module("frello",[]);
+angular.module("frello",["xeditable"]);
+
+angular.module("frello").run(function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
 
 angular.module("frello").controller("FrelloController",function($scope){
 	$scope.tasks = [];
